@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.jct.bd.theproject.R;
 import com.jct.bd.theproject.model.backend.FactoryBackend;
-import com.jct.bd.theproject.model.backend.FireBase_DB_manager;
+import com.jct.bd.theproject.model.datasource.FireBase_DB_manager;
 import com.jct.bd.theproject.model.entities.Ride;
 import com.jct.bd.theproject.model.entities.TypeOfDrive;
 

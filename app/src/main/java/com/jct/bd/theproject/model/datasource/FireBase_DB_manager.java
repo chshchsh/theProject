@@ -1,5 +1,6 @@
-package com.jct.bd.theproject.model.backend;
+package com.jct.bd.theproject.model.datasource;
 
+import com.jct.bd.theproject.model.backend.DB_manager;
 import com.jct.bd.theproject.model.entities.Ride;
 
 import java.util.ArrayList;
