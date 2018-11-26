@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">theProject</string>
+    <string name="app_name">Get Taxi</string>
     <string name="ask_a_taxi">Ask a Taxi</string>
-    <string name="button">Button</string>
     <string name="your_e_mail">your E-mail:</string>
     <string name="your_phone">your phone:</string>
     <string name="address">Address:</string>
+    <string name="your_full_name">your full name:</string>
+    <string name="your_id">your id:</string>
+    <string name="welcome_screen">Welcome screen!</string>
+    <string name="_0">0 %</string>
+    <string name="welcome_to_get_taxi">Welcome to Get Taxi!!!</string>
 </resources>

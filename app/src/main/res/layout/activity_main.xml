@@ -1,65 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alwaysDrawnWithCache="true"
-    android:background="@android:color/holo_orange_light"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:visibility="visible"
-    tools:context="com.jct.bd.theproject.controller.MainActivity">
+    android:padding="16dp"
+    android:background="@drawable/open"
+    tools:context=".controller.MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="your full name:"
-        android:inputType="textPersonName"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/email2"
-        android:layout_width="match_parent"
+        android:layout_above="@id/text_view"
+        android:layout_centerHorizontal="true"
+        android:text="@string/welcome_to_get_taxi"
+        android:textColor="@android:color/black"
+        android:layout_margin="70dp"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
-        android:textSize="30sp"
-        android:hint="@string/your_e_mail"
-        android:visibility="visible"
-         />
+        android:text="@string/_0"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/progress_bar"/>
+<ProgressBar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/progress_bar"
+    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    android:layout_marginBottom="250dp"
+    android:layout_alignParentBottom="true"/>
 
-    <EditText
-        android:id="@+id/phoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:hint="@string/your_phone"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/Address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:hint="@string/address"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/addRaidButton"
-        style="@android:style/Animation.Toast"
-        android:layout_width="161dp"
-        android:layout_height="86dp"
-        android:background="@android:color/black"
-        android:text="@string/ask_a_taxi"
-        android:textColor="@android:color/holo_red_dark"
-        android:textColorHighlight="@android:color/background_light"
-        android:textSize="30sp"
-        android:visibility="visible" />
-
-</LinearLayout>
+</RelativeLayout>
