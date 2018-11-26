@@ -2,7 +2,6 @@ package com.jct.bd.theproject.controller;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.ProgressBar;
@@ -31,8 +30,8 @@ public class ProgressBarAnimation extends Animation {
         float value = from + (to-from) * interpolatedTime;
         progressBar.setProgress((int)value);
         textView.setText((int)value+"%");
-        if(value == to){
-          context.startActivity(new Intent(context,HomeActivity.class));
+        if(value == to) {
+            context.startActivity(new Intent(context, HomeActivity.class));
         }
     }
 }

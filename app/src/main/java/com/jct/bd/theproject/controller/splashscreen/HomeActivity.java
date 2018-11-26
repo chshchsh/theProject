@@ -1,12 +1,14 @@
 package com.jct.bd.theproject.controller.splashscreen;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jct.bd.theproject.R;
+import com.jct.bd.theproject.controller.MainActivity;
 import com.jct.bd.theproject.model.backend.FactoryBackend;
 import com.jct.bd.theproject.model.datasource.FireBase_DB_manager;
 import com.jct.bd.theproject.model.entities.Ride;
@@ -32,10 +34,8 @@ public class HomeActivity extends Activity implements View.OnClickListener  {
     }
     @Override
     public void onBackPressed(){
-        super.onBackPressed();
         if(backPressedTime + 2000> System.currentTimeMillis()){
-            super.onBackPressed();
-            return;
+            ActivityCompat.finishAffinity(HomeActivity.this);
         }else {
             Toast.makeText(getBaseContext(),"Press back again to exit",Toast.LENGTH_SHORT).show();
         }
