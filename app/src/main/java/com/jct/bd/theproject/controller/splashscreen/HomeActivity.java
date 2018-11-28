@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jct.bd.theproject.R;
-import com.jct.bd.theproject.controller.MainActivity;
 import com.jct.bd.theproject.model.backend.FactoryBackend;
 import com.jct.bd.theproject.model.datasource.FireBase_DB_manager;
 import com.jct.bd.theproject.model.entities.Ride;
@@ -24,6 +23,7 @@ public class HomeActivity extends Activity implements View.OnClickListener  {
     private EditText id;
     private EditText phoneNumber;
     private EditText Address;
+
 
     private void findViews() {
         addRideButton = (Button) findViewById(R.id.addRaidButton);
