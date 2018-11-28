@@ -36,8 +36,8 @@ public class Ride {
         this.email = "";
         this.name = "";
         Calendar calendar = null;
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
-        this.startDrive = Date.valueOf(format.format(calendar.getTime()));
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+       // this.startDrive = Date.valueOf(format.format(calendar.getTime()));
         this.phone = "";
     }
 

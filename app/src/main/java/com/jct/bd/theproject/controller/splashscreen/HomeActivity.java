@@ -3,6 +3,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -51,6 +53,8 @@ public class HomeActivity extends Activity implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
         if (v == addRideButton) {
+            Animation animation = AnimationUtils.loadAnimation(this,R.anim.sample_anim);
+            addRideButton.startAnimation(animation);
             FireBase_DB_manager backend= FactoryBackend.getInstance();
             Ride ride = new Ride();
             ride.setId(id.toString());
