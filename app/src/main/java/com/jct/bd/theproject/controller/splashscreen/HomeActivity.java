@@ -22,7 +22,7 @@ public class HomeActivity extends Activity implements View.OnClickListener  {
     private EditText name;
     private EditText id;
     private EditText phoneNumber;
-    private EditText Address;
+    private EditText DestinationAddress;
 
 
     private void findViews() {
@@ -32,7 +32,7 @@ public class HomeActivity extends Activity implements View.OnClickListener  {
         id = (EditText) findViewById(R.id.id);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         name = (EditText) findViewById(R.id.name);
-        Address = (EditText) findViewById(R.id.Address);
+       // DestinationAddress = (EditText) findViewById(R.id.DestinationAddress);
     }
     @Override
     public void onBackPressed(){
@@ -55,24 +55,17 @@ public class HomeActivity extends Activity implements View.OnClickListener  {
         if (v == addRideButton) {
             Animation animation = AnimationUtils.loadAnimation(this,R.anim.sample_anim);
             addRideButton.startAnimation(animation);
-//            Ride ride = new Ride();
-//            ride.setId(id.toString());
-//            ride.setName(name.toString());
-//            ride.setEmail(Email.toString());
-//            ride.setPhone(phoneNumber.toString());
-//            //ride.setEndLocation(Address.toString());
-//            ride.setDrive(TypeOfDrive.PROGRESS);
             AskNewRide();
         }
     }
     private Ride getRide() {
         Ride ride = new Ride();
-        ride.setId(id.toString());
-        ride.setName(name.toString());
-        ride.setEmail(Email.toString());
-        ride.setPhone(phoneNumber.toString());
-        //ride.setEndLocation(Address.toString());
-        ride.setDrive(TypeOfDrive.PROGRESS);
+        ride.setId(id.getText().toString());
+        ride.setName(name.getText().toString());
+        ride.setEmail(Email.getText().toString());
+        ride.setPhone(phoneNumber.getText().toString());
+        //ride.setEndLocation(DestinationAddress.getText());
+        ride.setDrive(TypeOfDrive.AVAILABLE);
         return ride;
     }
     public void AskNewRide() {
