@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Get Taxi</string>
+    <string name="ask_a_taxi">בקשת נסיעה</string>
+    <string name="your_e_mail">המייל :</string>
+    <string name="your_phone">הטלפון שלך:</string>
+    <string name="address">כתובת היעד שלך:</string>
+    <string name="your_full_name">שם מלא:</string>
+    <string name="your_id">התז שלך:</string>
+    <string name="welcome_to_get_taxi">ברוך הבא לGET TEXI</string>
+    <string name="welcome_screen">ברוך הבא לGET TEXI</string>
+    <string name="your_loction">המיקום הנוכחי שלך:</string>
+</resources>
