@@ -6,7 +6,7 @@
     <string name="address">Your Destination Address</string>
     <string name="your_full_name">your full name:</string>
     <string name="your_id">your id:</string>
-    <string name="welcome_screen">Welcome screen!</string>
     <string name="_0">0 %</string>
     <string name="your_loction">your Loction</string>
+    <string name="welcome_to_get_taxi">welcome to get taxi</string>
 </resources>
