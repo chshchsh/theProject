@@ -1,12 +1,9 @@
 package com.jct.bd.theproject.model.entities;
 
 import android.content.ContentValues;
-import android.location.Location;
-//import com.google.firebase.database.Exclude;
+
 import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class Ride {
     private TypeOfDrive drive;
@@ -39,9 +36,6 @@ public class Ride {
         this.name = "";
         this.endLocation = "";
         this.startLocation = "";
-        Calendar calendar = null;
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-       // this.startDrive = Date.valueOf(format.format(calendar.getTime()));
         this.phone = "";
     }
 
@@ -50,8 +44,11 @@ public class Ride {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws Exception {
+        if(email.contains("@"))
+         this.email = email;
+        else
+            throw new Exception("the email mast contain @");
     }
 
     public String getStartLocation() {
@@ -66,8 +63,11 @@ public class Ride {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(String phone) throws Exception {
+        if(phone.contains("1")||phone.contains("2")||phone.contains("3")||phone.contains("4")||phone.contains("5")||phone.contains("6")||phone.contains("7")||phone.contains("8")||phone.contains("9")||phone.contains("0"))
         this.phone = phone;
+        else
+            throw new Exception("the phone must contains only numbers");
     }
 
     public Date getStartDrive() {
@@ -96,7 +96,6 @@ public class Ride {
     }
 
     public String getName() {
-
         return name;
     }
 
@@ -116,8 +115,38 @@ public class Ride {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id) throws Exception {
+        if (IDCheck(id))
         this.id = id;
+        else
+            throw new Exception("this id not exists");
+    }
+    static boolean IDCheck(String strID)
+    {
+        int[] id_12_digits = { 1, 2, 1, 2, 1, 2, 1, 2, 1 };
+        int count = 0;
+        if (strID == null)
+            return false;
+        strID = leftPad(strID,9,'0');
+        for (int i = 0; i < 9; i++)
+        {
+            int num = Integer.parseInt(strID.substring(i, 1)) * id_12_digits[i];
+            if (num > 9)
+                num = (num / 10) + (num % 10);
+            count += num;
+        }
+        return (count % 10 == 0);
+    }
+    public static String leftPad(String originalString, int length,
+                                 char padCharacter) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append(padCharacter);
+        }
+        String padding = sb.toString();
+        String paddedString = padding.substring(originalString.length())
+                + originalString;
+        return paddedString;
     }
     public static ContentValues RideToContentValues(Ride ride) {
         ContentValues contentValues = new ContentValues();
@@ -131,16 +160,16 @@ public class Ride {
         contentValues.put("START LOCATION",ride.getStartLocation().toString());
         return contentValues;
     }
-    public static Ride ContentValuesToRide(ContentValues contentValues) throws ParseException {
+    public static Ride ContentValuesToRide(ContentValues contentValues) throws Exception {
         Ride ride = new Ride();
         ride.setId(contentValues.getAsString("ID"));
         ride.setName(contentValues.getAsString("NAME"));
         ride.setPhone(contentValues.getAsString("PHONE"));
         ride.setEmail(contentValues.getAsString("EMAIL"));
         ride.setDrive(TypeOfDrive.valueOf(contentValues.getAsString("TYPE OF RIDE")));
-        //ride.setEndLocation(contentValues.getAsString("DESTINATION"));
+        ride.setEndLocation(contentValues.getAsString("DESTINATION"));
         ride.setStartDrive(Date.valueOf(contentValues.getAsString("START OF DRIVE")));
-        //ride.setStartLocation(contentValues.getAsString("START LOCATION"));
+        ride.setStartLocation(contentValues.getAsString("START LOCATION"));
         return ride;
     }
 }

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.drm.DrmStore;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -27,9 +30,9 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.jct.bd.theproject.R;
+import com.jct.bd.theproject.model.backend.FactoryBackend;
 import com.jct.bd.theproject.model.datasource.FireBase_DB_manager;
 import com.jct.bd.theproject.model.entities.Ride;
-import com.jct.bd.theproject.model.entities.TypeOfDrive;
 
 import java.io.IOException;
 import java.util.List;
@@ -60,10 +63,15 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         stopUpdateButton.setOnClickListener(this);
         addRideButton = (Button) findViewById(R.id.addRaidButton);
         addRideButton.setOnClickListener(this);
+        addRideButton.setEnabled(false);
         Email = (EditText) findViewById(R.id.email2);
         id = (EditText) findViewById(R.id.id);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         name = (EditText) findViewById(R.id.name);
+        Email.addTextChangedListener(AddTextWatcer);
+        id.addTextChangedListener(AddTextWatcer);
+        phoneNumber.addTextChangedListener(AddTextWatcer);
+        name.addTextChangedListener(AddTextWatcer);
         placeAutocompleteFragment1 = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment1);
         placeAutocompleteFragment2 = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment2);
         placeAutocompleteFragment1.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -117,7 +125,25 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             }
         };
     }
+    private TextWatcher AddTextWatcer = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+           }
 
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String inputName = name.getText().toString().trim();
+            String inputEmail = Email.getText().toString().trim();
+            String inputId = id.getText().toString().trim();
+            String inputPhone = phoneNumber.getText().toString().trim();
+            addRideButton.setEnabled(!inputEmail.isEmpty()&&!inputName.isEmpty()&&!inputId.isEmpty()&&!inputPhone.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     private void getLocation() {
 
@@ -143,9 +169,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
             if (addresses.size() > 0) {
                 String cityName = addresses.get(0).getAddressLine(0);
-                //  String stateName = addresses.get(0).getAddressLine(1);
-                //  String countryName = addresses.get(0).getAddressLine(2);
-                //  return stateName + "\n" + cityName + "\n" + countryName;
+                 String stateName = addresses.get(0).getAddressLine(1);
+                 String countryName = addresses.get(0).getAddressLine(2);
+                 from = stateName + "\n" + cityName + "\n" + countryName;
                 return cityName;
             }
 
@@ -204,14 +230,26 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         if (v == addRideButton) {
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
             addRideButton.startAnimation(animation);
+            FireBase_DB_manager backend;
+            backend = FactoryBackend.getInstance();
             Ride ride = new Ride();
-            ride.setId(id.getText().toString());
+            try {
+                ride.setId(id.getText().toString());
             ride.setName(name.getText().toString());
             ride.setEmail(Email.getText().toString());
             ride.setPhone(phoneNumber.getText().toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             ride.setStartLocation(from);
             ride.setEndLocation(to);
-            ride.setDrive(TypeOfDrive.AVAILABLE);
+            backend.AskNewRide(ride);
+            name.setText("");
+            Email.setText("");
+            phoneNumber.setText("");
+            id.setText("");
+            placeAutocompleteFragment1.setText("");
+            placeAutocompleteFragment2.setText("");
         }
     }
 }
