@@ -10,4 +10,5 @@
     <string name="welcome_to_get_taxi">ברוך הבא לGET TEXI</string>
     <string name="welcome_screen">ברוך הבא לGET TEXI</string>
     <string name="your_loction">המיקום הנוכחי שלך:</string>
+    <string name="get_my_location">המיקום הנוכחי שלך:</string>
 </resources>

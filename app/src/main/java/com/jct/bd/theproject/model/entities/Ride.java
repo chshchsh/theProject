@@ -2,7 +2,7 @@ package com.jct.bd.theproject.model.entities;
 
 import android.content.ContentValues;
 import android.location.Location;
-import com.google.firebase.database.Exclude;
+//import com.google.firebase.database.Exclude;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,12 +15,12 @@ public class Ride {
     private String name;
     private Date startDrive;
     private Date endDrive;
-    private Location startLocation;
-    private Location endLocation;
+    private String startLocation;
+    private String endLocation;
     private String phone;
 
 
-    public Ride(TypeOfDrive drive, String id, String email, String name, Date startDrive, Date endDrive, Location startLocation, Location endLocation, String phone) {
+    public Ride(TypeOfDrive drive, String id, String email, String name, Date startDrive, Date endDrive, String startLocation, String endLocation, String phone) {
         this.drive = drive;
         this.id = id;
         this.email = email;
@@ -37,13 +37,15 @@ public class Ride {
         this.id = "";
         this.email = "";
         this.name = "";
+        this.endLocation = "";
+        this.startLocation = "";
         Calendar calendar = null;
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
        // this.startDrive = Date.valueOf(format.format(calendar.getTime()));
         this.phone = "";
     }
 
-    @Exclude
+    //@Exclude
     public String getEmail() {
         return email;
     }
@@ -52,11 +54,11 @@ public class Ride {
         this.email = email;
     }
 
-    public Location getStartLocation() {
+    public String getStartLocation() {
         return startLocation;
     }
 
-    public void setStartLocation(Location startLocation) {
+    public void setStartLocation(String startLocation) {
         this.startLocation = startLocation;
     }
 
@@ -85,11 +87,11 @@ public class Ride {
         this.endDrive = endDrive;
     }
 
-    public Location getEndLocation() {
+    public String getEndLocation() {
         return endLocation;
     }
 
-    public void setEndLocation(Location endLocation) {
+    public void setEndLocation(String endLocation) {
         this.endLocation = endLocation;
     }
 
