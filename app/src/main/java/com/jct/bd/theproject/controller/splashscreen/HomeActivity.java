@@ -40,6 +40,7 @@ import java.util.Locale;
 
 public class HomeActivity extends Activity implements View.OnClickListener {
     private long backPressedTime;
+    boolean notError;
     private Button getLocationButton;
     private Button stopUpdateButton;
     LocationManager locationManager;
@@ -125,10 +126,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             }
         };
     }
+
     private TextWatcher AddTextWatcer = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-           }
+        }
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -136,7 +138,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             String inputEmail = Email.getText().toString().trim();
             String inputId = id.getText().toString().trim();
             String inputPhone = phoneNumber.getText().toString().trim();
-            addRideButton.setEnabled(!inputEmail.isEmpty()&&!inputName.isEmpty()&&!inputId.isEmpty()&&!inputPhone.isEmpty());
+            addRideButton.setEnabled(!inputEmail.isEmpty() && !inputName.isEmpty() && !inputId.isEmpty() && !inputPhone.isEmpty());
         }
 
         @Override
@@ -157,7 +159,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             getLocationButton.setEnabled(false);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
-}
+    }
 
 
     public String getPlace(Location location) {
@@ -169,9 +171,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
             if (addresses.size() > 0) {
                 String cityName = addresses.get(0).getAddressLine(0);
-                 String stateName = addresses.get(0).getAddressLine(1);
-                 String countryName = addresses.get(0).getAddressLine(2);
-                 from = stateName + "\n" + cityName + "\n" + countryName;
+                String stateName = addresses.get(0).getAddressLine(1);
+                String countryName = addresses.get(0).getAddressLine(2);
+                from = stateName + "\n" + cityName + "\n" + countryName;
                 return cityName;
             }
 
@@ -201,6 +203,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         findViews();
     }
+
     @SuppressLint("MissingPermission")
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -217,9 +220,10 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         }
 
     }
+
     @Override
     public void onClick(View v) {
-        if(v == getLocationButton)
+        if (v == getLocationButton)
             getLocation();
         if (v == stopUpdateButton) {
             // Remove the listener you previously added
@@ -230,20 +234,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         if (v == addRideButton) {
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
             addRideButton.startAnimation(animation);
-            FireBase_DB_manager backend;
-            backend = FactoryBackend.getInstance();
-            Ride ride = new Ride();
-            try {
-                ride.setId(id.getText().toString());
-            ride.setName(name.getText().toString());
-            ride.setEmail(Email.getText().toString());
-            ride.setPhone(phoneNumber.getText().toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            ride.setStartLocation(from);
-            ride.setEndLocation(to);
-            backend.AskNewRide(ride);
+            addStudent();
             name.setText("");
             Email.setText("");
             phoneNumber.setText("");
@@ -251,5 +242,50 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             placeAutocompleteFragment1.setText("");
             placeAutocompleteFragment2.setText("");
         }
+    }
+
+    private void addStudent() {
+        try {
+            Ride ride = getRide();
+            if (notError) {
+                FireBase_DB_manager backend;
+                backend = FactoryBackend.getInstance();
+                addRideButton.setEnabled(false);
+                backend.AskNewRide(ride, new FireBase_DB_manager.Action<String>() {
+                    @Override
+                    public void onSuccess(String obj) {
+                        Toast.makeText(getBaseContext(), "insert id " + obj, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(Exception exception) {
+                        Toast.makeText(getBaseContext(), "Error \n" + exception.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    public void onProgress(String status, double percent) {
+                        if (percent != 100)
+                            addRideButton.setEnabled(false);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Toast.makeText(getBaseContext(), "Error ", Toast.LENGTH_LONG).show();
+        }
+    }
+    public Ride getRide() {
+        notError = true;
+        Ride ride = new Ride();
+        try {
+            ride.setId(id.getText().toString());
+            ride.setName(name.getText().toString());
+            ride.setEmail(Email.getText().toString());
+            ride.setPhone(phoneNumber.getText().toString());
+            ride.setStartLocation(from);
+            ride.setEndLocation(to);
+        } catch (Exception e) {
+            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            notError = false;
+        }
+        return ride;
     }
 }

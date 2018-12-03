@@ -64,8 +64,8 @@ public class Ride {
     }
 
     public void setPhone(String phone) throws Exception {
-        if(phone.contains("1")||phone.contains("2")||phone.contains("3")||phone.contains("4")||phone.contains("5")||phone.contains("6")||phone.contains("7")||phone.contains("8")||phone.contains("9")||phone.contains("0"))
-        this.phone = phone;
+        if (phone.length() == 10 || phone.length() == 9)
+            this.phone = phone;
         else
             throw new Exception("the phone must contains only numbers");
     }
@@ -119,7 +119,7 @@ public class Ride {
         if (IDCheck(id))
         this.id = id;
         else
-            throw new Exception("this id not exists");
+            throw new Exception ("this id not exists");
     }
     static boolean IDCheck(String strID)
     {
@@ -130,7 +130,7 @@ public class Ride {
         strID = leftPad(strID,9,'0');
         for (int i = 0; i < 9; i++)
         {
-            int num = Integer.parseInt(strID.substring(i, 1)) * id_12_digits[i];
+            int num = Integer.parseInt(strID.substring(i, i+1)) * id_12_digits[i];
             if (num > 9)
                 num = (num / 10) + (num % 10);
             count += num;
