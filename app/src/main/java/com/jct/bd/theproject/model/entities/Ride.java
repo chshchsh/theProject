@@ -1,9 +1,11 @@
 package com.jct.bd.theproject.model.entities;
 
 import android.content.ContentValues;
+import android.location.Location;
+
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 
 import java.sql.Date;
-import java.text.ParseException;
 
 public class Ride {
     private TypeOfDrive drive;
@@ -12,12 +14,12 @@ public class Ride {
     private String name;
     private Date startDrive;
     private Date endDrive;
-    private String startLocation;
-    private String endLocation;
+    private Location startLocation;
+    private Location endLocation;
     private String phone;
 
 
-    public Ride(TypeOfDrive drive, String id, String email, String name, Date startDrive, Date endDrive, String startLocation, String endLocation, String phone) {
+    public Ride(TypeOfDrive drive, String id, String email, String name, Date startDrive, Date endDrive, Location startLocation, Location endLocation, String phone) {
         this.drive = drive;
         this.id = id;
         this.email = email;
@@ -34,8 +36,8 @@ public class Ride {
         this.id = "";
         this.email = "";
         this.name = "";
-        this.endLocation = "";
-        this.startLocation = "";
+        this.endLocation = null;
+        this.startLocation = null;
         this.phone = "";
     }
 
@@ -51,11 +53,11 @@ public class Ride {
             throw new Exception("the email mast contain @");
     }
 
-    public String getStartLocation() {
+    public Location getStartLocation() {
         return startLocation;
     }
 
-    public void setStartLocation(String startLocation) {
+    public void setStartLocation(Location startLocation) {
         this.startLocation = startLocation;
     }
 
@@ -87,11 +89,11 @@ public class Ride {
         this.endDrive = endDrive;
     }
 
-    public String getEndLocation() {
+    public Location getEndLocation() {
         return endLocation;
     }
 
-    public void setEndLocation(String endLocation) {
+    public void setEndLocation(Location endLocation) {
         this.endLocation = endLocation;
     }
 
@@ -147,29 +149,5 @@ public class Ride {
         String paddedString = padding.substring(originalString.length())
                 + originalString;
         return paddedString;
-    }
-    public static ContentValues RideToContentValues(Ride ride) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("ID", ride.getId());
-        contentValues.put("NAME", ride.getName());
-        contentValues.put("EMAIL", ride.getEmail());
-        contentValues.put("PHONE", ride.getPhone());
-        contentValues.put("TYPE OF RIDE", ride.getDrive().toString());
-        contentValues.put("DESTINATION",ride.getEndLocation().toString());
-        contentValues.put("START OF DRIVE",ride.getStartDrive().toString());
-        contentValues.put("START LOCATION",ride.getStartLocation().toString());
-        return contentValues;
-    }
-    public static Ride ContentValuesToRide(ContentValues contentValues) throws Exception {
-        Ride ride = new Ride();
-        ride.setId(contentValues.getAsString("ID"));
-        ride.setName(contentValues.getAsString("NAME"));
-        ride.setPhone(contentValues.getAsString("PHONE"));
-        ride.setEmail(contentValues.getAsString("EMAIL"));
-        ride.setDrive(TypeOfDrive.valueOf(contentValues.getAsString("TYPE OF RIDE")));
-        ride.setEndLocation(contentValues.getAsString("DESTINATION"));
-        ride.setStartDrive(Date.valueOf(contentValues.getAsString("START OF DRIVE")));
-        ride.setStartLocation(contentValues.getAsString("START LOCATION"));
-        return ride;
     }
 }

@@ -11,4 +11,6 @@
     <string name="welcome_to_get_taxi">welcome to get taxi</string>
     <string name="get_my_location">get my location</string>
     <string name="stop_update">Stop Update</string>
+    <string name="source">Source:</string>
+    <string name="destination">Destination:</string>
 </resources>

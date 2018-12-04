@@ -9,9 +9,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.jct.bd.theproject.model.backend.IDB_Maneger;
 import com.jct.bd.theproject.model.entities.Ride;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FireBase_DB_manager implements IDB_Maneger {
     public interface Action<T> {
         void onSuccess(String obj);
@@ -28,14 +25,12 @@ public class FireBase_DB_manager implements IDB_Maneger {
     }
 
     static DatabaseReference RidesRef;
-    static List<Ride> rideList;
 
     static {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         RidesRef = database.getReference("rides");
-        rideList = new ArrayList<>();
     }
-    public void AskNewRide(final Ride ride, final Action<String> action) {
+    public Void AskNewRide(final Ride ride, final Action<String> action) {
         String key = ride.getId();
         RidesRef.child(key).setValue(ride).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -50,6 +45,7 @@ public class FireBase_DB_manager implements IDB_Maneger {
                 action.onProgress("error upload student data", 100);
             }
         });
+        return null;
     }
 }
 

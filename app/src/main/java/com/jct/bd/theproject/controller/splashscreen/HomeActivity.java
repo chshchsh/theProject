@@ -12,6 +12,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -246,27 +247,31 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     private void addStudent() {
         try {
-            Ride ride = getRide();
+            final Ride ride = getRide();
             if (notError) {
-                FireBase_DB_manager backend;
-                backend = FactoryBackend.getInstance();
                 addRideButton.setEnabled(false);
-                backend.AskNewRide(ride, new FireBase_DB_manager.Action<String>() {
+                new AsyncTask<Void,Void,Void>() {
                     @Override
-                    public void onSuccess(String obj) {
-                        Toast.makeText(getBaseContext(), "insert id " + obj, Toast.LENGTH_LONG).show();
-                    }
+                    protected Void doInBackground(Void... voids) {
+                       return  FactoryBackend.getInstance().AskNewRide(ride, new FireBase_DB_manager.Action<String>()
+                        {
+                            @Override
+                            public void onSuccess(String obj) {
+                                Toast.makeText(getBaseContext(), "insert id " + obj, Toast.LENGTH_LONG).show();
+                            }
 
-                    @Override
-                    public void onFailure(Exception exception) {
-                        Toast.makeText(getBaseContext(), "Error \n" + exception.getMessage(), Toast.LENGTH_LONG).show();
-                    }
+                            @Override
+                            public void onFailure(Exception exception) {
+                                Toast.makeText(getBaseContext(), "Error \n" + exception.getMessage(), Toast.LENGTH_LONG).show();
+                            }
 
-                    public void onProgress(String status, double percent) {
-                        if (percent != 100)
-                            addRideButton.setEnabled(false);
+                            public void onProgress(String status, double percent) {
+                                if (percent != 100)
+                                    addRideButton.setEnabled(false);
+                            }
+                        });
                     }
-                });
+                }.execute();
             }
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Error ", Toast.LENGTH_LONG).show();
@@ -280,8 +285,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             ride.setName(name.getText().toString());
             ride.setEmail(Email.getText().toString());
             ride.setPhone(phoneNumber.getText().toString());
-            ride.setStartLocation(from);
-            ride.setEndLocation(to);
+            ride.setStartLocation(locationA);
+            ride.setEndLocation(locationB);
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             notError = false;

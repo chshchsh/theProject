@@ -12,4 +12,6 @@
     <string name="your_loction">המיקום הנוכחי שלך</string>
     <string name="get_my_location">המיקום הנוכחי שלך</string>
     <string name="stop_update">הפסק לעדכן מיקום</string>
+    <string name="source">מוצא:</string>
+    <string name="destination">יעד:</string>
 </resources>
