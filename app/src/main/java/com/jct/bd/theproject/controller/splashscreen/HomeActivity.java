@@ -235,7 +235,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         if (v == addRideButton) {
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
             addRideButton.startAnimation(animation);
-            addStudent();
+            addRide();
             name.setText("");
             Email.setText("");
             phoneNumber.setText("");
@@ -245,7 +245,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    private void addStudent() {
+    private void addRide() {
         try {
             final Ride ride = getRide();
             if (notError) {
