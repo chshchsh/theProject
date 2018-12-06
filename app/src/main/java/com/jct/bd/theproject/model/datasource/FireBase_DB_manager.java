@@ -6,10 +6,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.jct.bd.theproject.model.backend.IDB_Maneger;
+import com.jct.bd.theproject.model.backend.IDB_Backend;
 import com.jct.bd.theproject.model.entities.Ride;
 
-public class FireBase_DB_manager implements IDB_Maneger {
+public class FireBase_DB_manager implements IDB_Backend {
     public interface Action<T> {
         void onSuccess(String obj);
 
