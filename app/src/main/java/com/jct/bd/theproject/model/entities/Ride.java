@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.location.Location;
 
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.firebase.database.Exclude;
 
 import java.sql.Date;
 
@@ -41,7 +42,6 @@ public class Ride {
         this.phone = "";
     }
 
-    //@Exclude
     public String getEmail() {
         return email;
     }
@@ -113,6 +113,7 @@ public class Ride {
         this.drive = drive;
     }
 
+    @Exclude
     public String getId() {
         return id;
     }
