@@ -13,4 +13,12 @@
     <string name="stop_update">Stop Update</string>
     <string name="source">Source:</string>
     <string name="destination">Destination:</string>
+    <string name="gpsloc">please turn on your gps location</string>
+    <string name="pressBack">Press back again to exit</string>
+    <string name="prem">Until you grant the permission, we canot display the location</string>
+    <string name="insertId">insert id</string>
+    <string name="Error">Error</string>
+    <string name="email">the email mast contain @</string>
+    <string name="phone">the phone number length is not correct </string>
+    <string name="id">this id not exists</string>
 </resources>

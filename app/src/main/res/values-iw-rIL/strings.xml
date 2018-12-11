@@ -14,4 +14,12 @@
     <string name="stop_update">הפסק לעדכן מיקום</string>
     <string name="source">מוצא:</string>
     <string name="destination">יעד:</string>
+    <string name="gpsloc">בבקשה תדליק את השירותי מיקום</string>
+    <string name="pressBack">לחץ שוב על מנת לצאת</string>
+    <string name="prem">עד שאתה לא מקבל רשות,אי אפשר לספק לך את המיקום</string>
+    <string name="insertId">מכניס תז</string>
+    <string name="Error">שגיאה!</string>
+    <string name="email">המייל חייב להכיל @</string>
+    <string name="phone">האורך של המספר לא מתאים</string>
+    <string name="id">לא קיים תז כזה</string>
 </resources>

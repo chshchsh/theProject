@@ -17,32 +17,28 @@ public class FireBase_DB_manager implements IDB_Backend {
 
         void onProgress(String status, double percent);
     }
-
-    public interface NotifyDataChange<T> {
-        void OnDataChanged(T obj);
-
-        void onFailure(Exception exception);
-    }
-
     static DatabaseReference RidesRef;
 
     static {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        RidesRef = database.getReference("rides");
+        RidesRef = database.getReference("rides");//the root of the firebase
     }
     public Void AskNewRide(final Ride ride, final Action<String> action) {
-        String key = ride.getId();
+        String key = ride.getId();//get the id because is the root of the all details on firabase
+        //send the details of ride to firebase
         RidesRef.child(key).setValue(ride).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
+            //when is success to upload to firebase
             public void onSuccess(Void aVoid) {
                 action.onSuccess(ride.getId());
-                action.onProgress("upload student data", 100);
+                action.onProgress("upload ride data", 100);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
+            //when he don't success to upload to firebase
             public void onFailure(@NonNull Exception e) {
                 action.onFailure(e);
-                action.onProgress("error upload student data", 100);
+                action.onProgress("error upload ride data", 100);
             }
         });
         return null;

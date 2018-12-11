@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jct.bd.theproject.controller.splashscreen.HomeActivity;
-
+//this class for the view with the progress bar
 public class ProgressBarAnimation extends Animation {
     private Context context;
     private ProgressBar progressBar;

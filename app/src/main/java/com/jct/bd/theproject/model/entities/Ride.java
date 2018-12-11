@@ -1,10 +1,8 @@
 package com.jct.bd.theproject.model.entities;
 
-import android.content.ContentValues;
 import android.location.Location;
-
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.firebase.database.Exclude;
+import com.jct.bd.theproject.R;
 
 import java.sql.Date;
 
@@ -13,10 +11,10 @@ public class Ride {
     private String id;
     private String email;
     private String name;
-    private Date startDrive;
-    private Date endDrive;
-    private Location startLocation;
-    private Location endLocation;
+    private Date startDrive;//when the ride is starting
+    private Date endDrive;//when the ride is ending
+    private Location startLocation;//your source location
+    private Location endLocation;//your destination
     private String phone;
 
 
@@ -47,10 +45,10 @@ public class Ride {
     }
 
     public void setEmail(String email) throws Exception {
-        if(email.contains("@"))
+        if(email.contains("@"))//if the email don't contain a @
          this.email = email;
         else
-            throw new Exception("the email mast contain @");
+            throw new Exception(String.valueOf((R.string.email)));
     }
 
     public Location getStartLocation() {
@@ -66,10 +64,10 @@ public class Ride {
     }
 
     public void setPhone(String phone) throws Exception {
-        if (phone.length() == 10 || phone.length() == 9)
+        if (phone.length() == 10 || phone.length() == 9)//check if the phone number is make sense
             this.phone = phone;
         else
-            throw new Exception("the phone must contains only numbers");
+            throw new Exception(String.valueOf(R.string.phone));
     }
 
     public Date getStartDrive() {
@@ -122,8 +120,9 @@ public class Ride {
         if (IDCheck(id))
         this.id = id;
         else
-            throw new Exception ("this id not exists");
+            throw new Exception (String.valueOf(R.string.id));
     }
+    //this func check if the id is true
     static boolean IDCheck(String strID)
     {
         int[] id_12_digits = { 1, 2, 1, 2, 1, 2, 1, 2, 1 };
@@ -140,6 +139,7 @@ public class Ride {
         }
         return (count % 10 == 0);
     }
+    //this func is help to IFCheck and pad 0 of left the string to be on length of 9 numbers
     public static String leftPad(String originalString, int length,
                                  char padCharacter) {
         StringBuilder sb = new StringBuilder();
