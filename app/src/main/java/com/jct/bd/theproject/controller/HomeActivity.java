@@ -1,4 +1,4 @@
-package com.jct.bd.theproject.controller.splashscreen;
+package com.jct.bd.theproject.controller;
 
 
 import android.Manifest;
@@ -39,7 +39,7 @@ import java.util.Locale;
 public class HomeActivity extends Activity implements View.OnClickListener {
     private long backPressedTime;
     boolean notError;//check if was Error somewhere on the code
-    private Button getLocationButton, stopUpdateButton, addRideButton;
+    private Button getLocationButton, addRideButton;
     LocationManager locationManager;
     LocationListener locationListener;
     private EditText Email, name, id, phoneNumber;
@@ -57,8 +57,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     private void findViews() {
         getLocationButton = (Button) findViewById(R.id.getLocationButton);
         getLocationButton.setOnClickListener(this);
-        stopUpdateButton = (Button) findViewById(R.id.stopUpdateButton);
-        stopUpdateButton.setOnClickListener(this);
         addRideButton = (Button) findViewById(R.id.addRaidButton);
         addRideButton.setOnClickListener(this);
         addRideButton.setEnabled(false);//the button is enabled because that not all the fields are full
@@ -163,7 +161,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         } else {
             // Android version is lesser than 6.0 or the permission is already granted.
-            stopUpdateButton.setEnabled(true);//this button stop of search a location
             getLocationButton.setEnabled(false);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
@@ -181,7 +178,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                 String stateName = addresses.get(0).getAddressLine(1);
                 String countryName = addresses.get(0).getAddressLine(2);
                 from = stateName + "\n" + cityName + "\n" + countryName;
-                return from;
+                return cityName;
             }
 
             return "no place: \n (" + location.getLongitude() + " , " + location.getLatitude() + ")";
@@ -204,13 +201,12 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         }
         backPressedTime = System.currentTimeMillis();
     }
-    //ask the owner of the app prention to use the location of the phone
+    //ask the owner of the app permission to use the location of the phone
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 5) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission is granted
-                stopUpdateButton.setEnabled(true);
                 getLocationButton.setEnabled(false);
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -229,18 +225,14 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             }
         }
     }
-
     @Override
     public void onClick(View v) {
         if (v == getLocationButton)//if he want is current location
             getLocation();
-        if (v == stopUpdateButton) {//if he want to stop search is location
-            // Remove the listener you previously added
-            locationManager.removeUpdates(locationListener);
-            stopUpdateButton.setEnabled(false);
-            getLocationButton.setEnabled(true);
-        }
         if (v == addRideButton) {//if he want to ask ride from taxi
+            locationManager.removeUpdates(locationListener);
+            addRideButton.setEnabled(false);
+            getLocationButton.setEnabled(true);
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
             addRideButton.startAnimation(animation);//this do animation on the button when you click on him
             addRide();

@@ -16,8 +16,7 @@ public class Ride {
     private Location startLocation;//your source location
     private Location endLocation;//your destination
     private String phone;
-
-
+    private String driverName;
     public Ride(TypeOfDrive drive, String id, String email, String name, Date startDrive, Date endDrive, Location startLocation, Location endLocation, String phone) {
         this.drive = drive;
         this.id = id;
@@ -138,4 +137,12 @@ public class Ride {
         }
         return (count % 10 == 0);
     }
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
 }

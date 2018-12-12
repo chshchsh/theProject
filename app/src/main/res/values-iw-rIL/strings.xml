@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Get Taxi</string>
-    <string name="ask_a_taxi">בקשת נסיעה</string>
+    <string name="ask_a_taxi">הזמן מונית</string>
     <string name="your_e_mail">המייל :</string>
     <string name="your_phone">הטלפון שלך:</string>
     <string name="address">כתובת היעד שלך:</string>

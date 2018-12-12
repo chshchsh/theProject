@@ -10,7 +10,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context="com.jct.bd.theproject.controller.splashscreen.HomeActivity">
+    tools:context="com.jct.bd.theproject.controller.HomeActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -26,47 +26,47 @@
         <EditText
             android:id="@+id/id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:ems="10"
             android:hint="@string/your_id"
             android:inputType="textPersonName|number"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="30sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:ems="10"
             android:hint="@string/your_full_name"
             android:inputType="textPersonName"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="30sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/email2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:ems="10"
             android:hint="@string/your_e_mail"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="30sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="visible" />
 
         <EditText
             android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:ems="10"
             android:hint="@string/your_phone"
             android:inputType="phone"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="30sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:text="@string/source"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="30sp" />
+            android:textSize="18sp" />
 
         <fragment
             android:id="@+id/place_autocomplete_fragment1"
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:text="@string/destination"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="30sp" />
+            android:textSize="18sp" />
 
         <fragment
             android:id="@+id/place_autocomplete_fragment2"
@@ -108,24 +108,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/stopUpdateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:enabled="false"
-        android:text="@string/stop_update"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <Button
         android:id="@+id/getLocationButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginTop="40dp"
         android:text="@string/get_my_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.848"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
