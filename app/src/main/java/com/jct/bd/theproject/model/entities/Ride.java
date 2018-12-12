@@ -129,7 +129,6 @@ public class Ride {
         int count = 0;
         if (strID == null)
             return false;
-        strID = leftPad(strID,9,'0');
         for (int i = 0; i < 9; i++)
         {
             int num = Integer.parseInt(strID.substring(i, i+1)) * id_12_digits[i];
@@ -138,17 +137,5 @@ public class Ride {
             count += num;
         }
         return (count % 10 == 0);
-    }
-    //this func is help to IFCheck and pad 0 of left the string to be on length of 9 numbers
-    public static String leftPad(String originalString, int length,
-                                 char padCharacter) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            sb.append(padCharacter);
-        }
-        String padding = sb.toString();
-        String paddedString = padding.substring(originalString.length())
-                + originalString;
-        return paddedString;
     }
 }
