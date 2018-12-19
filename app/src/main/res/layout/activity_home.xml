@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alwaysDrawnWithCache="true"
-    android:background="@drawable/gt"
+    android:background="@drawable/gradient"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:visibility="visible"
@@ -16,17 +16,18 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
+        android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/addRaidButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0">
 
         <EditText
             android:id="@+id/id"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="40dp"
             android:ems="10"
             android:hint="@string/your_id"
             android:inputType="textPersonName|number"
@@ -105,35 +106,34 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/place_autocomplete_fragment1" />
+
+        <Button
+            android:id="@+id/getLocationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:text="@string/get_my_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.579"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/addRaidButton"
+            android:layout_width="169dp"
+            android:layout_height="98dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ovel_button"
+            android:text="@string/ask_a_taxi"
+            android:textColor="#f80404"
+            android:textSize="30sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.582"
+            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/getLocationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/get_my_location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <Button
-        android:id="@+id/addRaidButton"
-        android:layout_width="169dp"
-        android:layout_height="98dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/ovel_button"
-        android:text="@string/ask_a_taxi"
-        android:textColor="#f80404"
-        android:textSize="30sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

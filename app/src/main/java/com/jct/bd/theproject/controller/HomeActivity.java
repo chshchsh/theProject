@@ -29,6 +29,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.jct.bd.theproject.R;
+import com.jct.bd.theproject.model.backend.Action;
 import com.jct.bd.theproject.model.backend.FactoryBackend;
 import com.jct.bd.theproject.model.datasource.FireBase_DB_manager;
 import com.jct.bd.theproject.model.entities.Ride;
@@ -255,7 +256,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                     @Override
                     protected Void doInBackground(Void... voids) {
                         //go to the func on the backend and also is do the action on the backend
-                       return  FactoryBackend.getInstance().AskNewRide(ride, new FireBase_DB_manager.Action<String>()
+                       return  FactoryBackend.getInstance().AskNewRide(ride, new Action<String>()
                         {
                             @Override
                             public void onSuccess(String obj) {

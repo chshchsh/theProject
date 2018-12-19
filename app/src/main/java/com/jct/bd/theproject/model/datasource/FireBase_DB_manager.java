@@ -1,7 +1,7 @@
 package com.jct.bd.theproject.model.datasource;
 
 import android.support.annotation.NonNull;
-
+import com.jct.bd.theproject.model.backend.Action;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -10,13 +10,6 @@ import com.jct.bd.theproject.model.backend.IDB_Backend;
 import com.jct.bd.theproject.model.entities.Ride;
 
 public class FireBase_DB_manager implements IDB_Backend {
-    public interface Action<T> {
-        void onSuccess(String obj);
-
-        void onFailure(Exception exception);
-
-        void onProgress(String status, double percent);
-    }
     static DatabaseReference RidesRef;
 
     static {
