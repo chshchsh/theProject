@@ -1,7 +1,6 @@
 package com.jct.bd.theproject.model.entities;
 
 import android.location.Location;
-import com.google.firebase.database.Exclude;
 import com.jct.bd.theproject.R;
 
 import java.sql.Date;
@@ -110,7 +109,6 @@ public class Ride {
         this.drive = drive;
     }
 
-    @Exclude
     public String getId() {
         return id;
     }
