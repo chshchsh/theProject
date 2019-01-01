@@ -8,4 +8,4 @@ public class FactoryBackend {
         return new FireBase_DB_manager();
     }
 
-    }
+}

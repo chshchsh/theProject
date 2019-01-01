@@ -1,4 +1,4 @@
-package com.jct.bd.theproject.model.backend;
+package com.jct.bd.theproject.model.datasource;
 
 public interface Action<T> {
     void onSuccess(String obj);

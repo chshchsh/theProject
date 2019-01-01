@@ -15,49 +15,56 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="580dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0">
+        app:layout_constraintVertical_bias="0.655">
 
         <EditText
             android:id="@+id/id"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:ems="10"
+            android:drawableStart="@drawable/ic_perm_identity_black_24dp"
             android:hint="@string/your_id"
             android:inputType="textPersonName|number"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_perm_identity_black_24dp" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:ems="10"
+            android:drawableLeft="@drawable/ic_explicit_black_24dp"
             android:hint="@string/your_full_name"
             android:inputType="textPersonName"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_explicit_black_24dp" />
 
         <EditText
             android:id="@+id/email2"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:ems="10"
+            android:drawableLeft="@drawable/ic_email_black_24dp"
             android:hint="@string/your_e_mail"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:drawableStart="@drawable/ic_email_black_24dp" />
 
         <EditText
             android:id="@+id/phoneNumber"
@@ -66,17 +73,11 @@
             android:ems="10"
             android:hint="@string/your_phone"
             android:inputType="phone"
+            android:drawableLeft="@drawable/ic_phone_black_24dp"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Source"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/source"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp" />
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_phone_black_24dp" />
 
         <fragment
             android:id="@+id/place_autocomplete_fragment1"
@@ -89,13 +90,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/Destination"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/destination"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp" />
 
         <fragment
             android:id="@+id/place_autocomplete_fragment2"

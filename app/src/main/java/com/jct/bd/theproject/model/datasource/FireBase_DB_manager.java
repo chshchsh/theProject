@@ -1,7 +1,7 @@
 package com.jct.bd.theproject.model.datasource;
 
 import android.support.annotation.NonNull;
-import com.jct.bd.theproject.model.backend.Action;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +19,7 @@ public class FireBase_DB_manager implements IDB_Backend {
     public Void AskNewRide(final Ride ride, final Action<String> action) {
         String key = ride.getId();//get the id because is the root of the all details on firabase
         //send the details of ride to firebase
-        RidesRef.child(key).setValue(ride).addOnSuccessListener(new OnSuccessListener<Void>() {
+                RidesRef.child(key).setValue(ride).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             //when is success to upload to firebase
             public void onSuccess(Void aVoid) {
