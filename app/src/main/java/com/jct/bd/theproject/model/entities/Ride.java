@@ -5,7 +5,7 @@ import android.location.Location;
 import com.google.firebase.database.Exclude;
 import com.jct.bd.theproject.R;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Ride {
     private TypeOfDrive drive;
@@ -18,6 +18,7 @@ public class Ride {
     private Location endLocation;//your destination
     private String phone;
     private String driverName;
+    private Date whenLoadToFirebase;
     public Ride(TypeOfDrive drive, String id, String email, String name, Date startDrive, Date endDrive, Location startLocation, Location endLocation, String phone) {
         this.drive = drive;
         this.id = id;
@@ -145,4 +146,11 @@ public class Ride {
         this.driverName = driverName;
     }
 
+    public Date getWhenLoadToFirebase() {
+        return whenLoadToFirebase;
+    }
+
+    public void setWhenLoadToFirebase(Date whenLoadToFirebase) {
+        this.whenLoadToFirebase = whenLoadToFirebase;
+    }
 }

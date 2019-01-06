@@ -9,6 +9,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.jct.bd.theproject.model.backend.IDB_Backend;
 import com.jct.bd.theproject.model.entities.Ride;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class FireBase_DB_manager implements IDB_Backend {
     static DatabaseReference RidesRef;
 
@@ -17,6 +20,8 @@ public class FireBase_DB_manager implements IDB_Backend {
         RidesRef = database.getReference("rides");//the root of the firebase
     }
     public Void AskNewRide(final Ride ride, final Action<String> action) {
+        Date currentDate = Calendar.getInstance().getTime();
+        ride.setWhenLoadToFirebase(currentDate);
         String key = ride.getId();//get the id because is the root of the all details on firabase
         //send the details of ride to firebase
                 RidesRef.child(key).setValue(ride).addOnSuccessListener(new OnSuccessListener<Void>() {
