@@ -1,6 +1,4 @@
 package com.jct.bd.theproject.controller;
-
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,7 +20,6 @@ import com.jct.bd.theproject.model.entities.MyLocation;
 import com.jct.bd.theproject.model.datasource.Action;
 import com.jct.bd.theproject.model.backend.FactoryBackend;
 import com.jct.bd.theproject.model.entities.Ride;
-
 import static com.jct.bd.theproject.model.entities.MyLocation.locationA;
 import static com.jct.bd.theproject.model.entities.MyLocation.locationB;
 
@@ -46,7 +43,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         getLocationButton.setOnClickListener(this);
         addRideButton = (Button) findViewById(R.id.addRaidButton);
         addRideButton.setOnClickListener(this);
-        addRideButton.setEnabled(false);//the button is enabled because that not all the fields are full
+        //addRideButton.setEnabled(false);//the button is enabled because that not all the fields are full
         Email = (EditText) findViewById(R.id.email2);
         id = (EditText) findViewById(R.id.id);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
@@ -99,7 +96,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             String inputId = id.getText().toString().trim();
             String inputPhone = phoneNumber.getText().toString().trim();
             //if they full the button was enable else is not
-            addRideButton.setEnabled(!inputEmail.isEmpty() && !inputName.isEmpty() && !inputId.isEmpty() && !inputPhone.isEmpty());
+            //addRideButton.setEnabled(!inputEmail.isEmpty() && !inputName.isEmpty() && !inputId.isEmpty() && !inputPhone.isEmpty());
         }
 
         @Override
@@ -123,7 +120,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             myLocation.getLocation();
         if (v == addRideButton) {//if he want to ask ride from taxi
             myLocation.locationManager.removeUpdates(myLocation.locationListener);
-            addRideButton.setEnabled(false);
+            //addRideButton.setEnabled(false);
             getLocationButton.setEnabled(true);
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
             addRideButton.startAnimation(animation);//this do animation on the button when you click on him
@@ -141,7 +138,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         try {
             final Ride ride = getRide();//return new ride that you get from the view
             if (notError) {//if not happened error on all the running
-                addRideButton.setEnabled(false);
+                //addRideButton.setEnabled(false);
                 //the AsyncTask for the func on the backend
                 new AsyncTask<Void,Void,Void>() {
                     @Override
@@ -162,8 +159,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                             }
 
                             public void onProgress(String status, double percent) {
-                                if (percent != 100)
-                                    addRideButton.setEnabled(false);
+                                //if (percent != 100)
+                                    //addRideButton.setEnabled(false);
                             }
                         });
                     }
@@ -185,7 +182,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             ride.setStartLocation(locationA);
             ride.setEndLocation(locationB);
         } catch (Exception e) {
-            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "error on the fields", Toast.LENGTH_SHORT).show();
             notError = false;
         }
         return ride;

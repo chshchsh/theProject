@@ -49,7 +49,7 @@ public class Ride {
         if(email.contains("@"))//if the email don't contain a @
          this.email = email;
         else
-            throw new Exception(String.valueOf((R.string.email)));
+            throw new Exception();
     }
 
     public Location getStartLocation() {
@@ -68,7 +68,7 @@ public class Ride {
         if (phone.length() == 10 || phone.length() == 9)//check if the phone number is make sense
             this.phone = phone;
         else
-            throw new Exception(String.valueOf(R.string.phone));
+            throw new Exception();
     }
 
     public Date getStartDrive() {
@@ -120,7 +120,7 @@ public class Ride {
         if (IDCheck(id))
         this.id = id;
         else
-            throw new Exception (String.valueOf(R.string.id));
+            throw new Exception ();
     }
     //this func check if the id is true
     static boolean IDCheck(String strID)

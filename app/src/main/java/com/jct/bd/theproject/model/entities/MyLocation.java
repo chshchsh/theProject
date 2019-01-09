@@ -31,6 +31,7 @@ public class MyLocation {
     public static Location locationB = new Location("B");//= new Location(to);
     public MyLocation(final Context context) {
         this.context = context;
+        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 placeAutocompleteFragment1.setText(getPlace(location));
@@ -52,7 +53,6 @@ public class MyLocation {
     }
 
     public void getLocation() {
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         int locationOff = 0;
         try {
             //gets the status mode of the location's settings in the device
