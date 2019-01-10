@@ -2,9 +2,11 @@ package com.jct.bd.theproject.controller;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,6 +24,7 @@ import com.jct.bd.theproject.model.backend.FactoryBackend;
 import com.jct.bd.theproject.model.entities.Ride;
 import static com.jct.bd.theproject.model.entities.MyLocation.locationA;
 import static com.jct.bd.theproject.model.entities.MyLocation.locationB;
+import static com.jct.bd.theproject.model.entities.Ride.IDCheck;
 
 public class HomeActivity extends Activity implements View.OnClickListener {
     private long backPressedTime;
@@ -29,6 +32,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     boolean notError;//check if was Error somewhere on the code
     private Button getLocationButton, addRideButton;
     private EditText Email, name, id, phoneNumber;
+    private TextInputLayout InputEmail,InputName,InputId,InputPhone;
     public static PlaceAutocompleteFragment placeAutocompleteFragment1;
     private PlaceAutocompleteFragment placeAutocompleteFragment2;
     @Override
@@ -48,10 +52,10 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         id = (EditText) findViewById(R.id.id);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         name = (EditText) findViewById(R.id.name);
-        Email.addTextChangedListener(AddTextWatcer);
-        id.addTextChangedListener(AddTextWatcer);
-        phoneNumber.addTextChangedListener(AddTextWatcer);
-        name.addTextChangedListener(AddTextWatcer);
+        InputEmail = (TextInputLayout) findViewById(R.id.InputEmail);
+        InputId = (TextInputLayout) findViewById(R.id.InputIdNumber);
+        InputPhone = (TextInputLayout) findViewById(R.id.InputPhone);
+        InputName = (TextInputLayout) findViewById(R.id.InputName);
         placeAutocompleteFragment1 = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment1);
         placeAutocompleteFragment2 = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment2);
         placeAutocompleteFragment1.setHint(getString(R.string.source));
@@ -82,28 +86,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             }
         });
     }
-
-    //Watcher if the fields are full or not
-    private TextWatcher AddTextWatcer = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String inputName = name.getText().toString().trim();
-            String inputEmail = Email.getText().toString().trim();
-            String inputId = id.getText().toString().trim();
-            String inputPhone = phoneNumber.getText().toString().trim();
-            //if they full the button was enable else is not
-            //addRideButton.setEnabled(!inputEmail.isEmpty() && !inputName.isEmpty() && !inputId.isEmpty() && !inputPhone.isEmpty());
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
     //this func is don't give you promotion to get out when you press back you need to press again to exit
     @Override
     public void onBackPressed() {
@@ -124,7 +106,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             getLocationButton.setEnabled(true);
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
             addRideButton.startAnimation(animation);//this do animation on the button when you click on him
-            addRide();
+            confirmInput(v);
             //after he send the details all fields again empty
             name.setText("");
             Email.setText("");
@@ -186,5 +168,91 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             notError = false;
         }
         return ride;
+    }
+
+    private boolean validateEmail(){
+        String emailInput = InputEmail.getEditText().getText().toString();
+        if(emailInput.isEmpty()){
+            InputEmail.setError(getString(R.string.fill_email));
+            InputEmail.setErrorEnabled(true);
+            Email.requestFocus();
+            Toast.makeText(this,getString(R.string.fill_email),Toast.LENGTH_LONG).show();
+            return false;
+        }else if (Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
+            InputEmail.setErrorEnabled(true);
+            InputEmail.setError(getString(R.string.contains));
+            Email.requestFocus();
+            Toast.makeText(this,getString(R.string.contains),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else {
+            InputEmail.setErrorEnabled(false);
+            return true;
+        }
+    }
+    private boolean validateId(){
+        String IdNumberInput = InputId.getEditText().getText().toString();
+        if(IdNumberInput.isEmpty()){
+            InputId.setError(getString(R.string.fill_id));
+            InputId.setErrorEnabled(true);
+            id.requestFocus();
+            Toast.makeText(this,getString(R.string.fill_id),Toast.LENGTH_LONG).show();
+            return false;
+        }else if(!IDCheck(IdNumberInput)){
+            InputId.setError(getString(R.string.Extract_id));
+            InputId.setErrorEnabled(true);
+            id.requestFocus();
+            Toast.makeText(this,getString(R.string.Extract_id),Toast.LENGTH_LONG).show();
+            return false;
+        }else if(IdNumberInput.length()!=9){
+            InputId.setError(getString(R.string.length_id));
+            InputId.setErrorEnabled(true);
+            id.requestFocus();
+            Toast.makeText(this,getString(R.string.length_id),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else {
+            InputId.setErrorEnabled(false);
+            return true;
+        }
+    }
+    private boolean validateFullName(){
+        String UserNameInput = InputName.getEditText().getText().toString();
+        if(UserNameInput.isEmpty()){
+            InputName.setError(getString(R.string.fill_name));
+            InputName.setErrorEnabled(true);
+            name.requestFocus();
+            Toast.makeText(this,getString(R.string.fill_name),Toast.LENGTH_LONG).show();
+            return false;
+        }else {
+            InputName.setErrorEnabled(false);
+            return true;
+        }
+    }
+    private boolean validatePhone(){
+        String phoneInput = InputPhone.getEditText().getText().toString();
+        if(phoneInput.isEmpty()){
+            InputPhone.setError(getString(R.string.fill_phone));
+            phoneNumber.requestFocus();
+            InputPhone.setErrorEnabled(true);
+            Toast.makeText(this,getString(R.string.fill_phone),Toast.LENGTH_LONG).show();
+            return false;
+        }else if(Patterns.PHONE.matcher(phoneInput).matches()){
+            InputPhone.setError(getString(R.string.length_phone));
+            phoneNumber.requestFocus();
+            InputPhone.setErrorEnabled(true);
+            Toast.makeText(this,getString(R.string.length_phone),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else {
+            InputPhone.setErrorEnabled(false);
+            return true;
+        }
+    }
+    public void confirmInput(View v) {
+        if (!validateFullName()|| !validateId() || !validatePhone() || !validateEmail())
+        return;
+        else
+         addRide();
     }
 }

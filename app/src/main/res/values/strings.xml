@@ -22,4 +22,12 @@
     <string name="phone">the phone number length is not correct </string>
     <string name="id">this id not exists</string>
     <string name="location_find">we find your location</string>
+    <string name="fill_email">please fill the email field</string>
+    <string name="contains">the email not make sense</string>
+    <string name="fill_id">please fill the id field</string>
+    <string name="Extract_id">this id not extract</string>
+    <string name="length_id">the length of id not make sense</string>
+    <string name="fill_name">please fill the name field</string>
+    <string name="fill_phone">please fill the phone field</string>
+    <string name="length_phone">the phone number not make sense</string>
 </resources>

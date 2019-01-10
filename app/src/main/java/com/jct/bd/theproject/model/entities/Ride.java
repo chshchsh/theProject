@@ -123,7 +123,7 @@ public class Ride {
             throw new Exception ();
     }
     //this func check if the id is true
-    static boolean IDCheck(String strID)
+    public static boolean IDCheck(String strID)
     {
         int[] id_12_digits = { 1, 2, 1, 2, 1, 2, 1, 2, 1 };
         int count = 0;

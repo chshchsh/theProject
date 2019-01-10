@@ -25,66 +25,102 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.655">
 
-        <EditText
-            android:id="@+id/id"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/InputIdNumber"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:ems="10"
-            android:drawableStart="@drawable/ic_perm_identity_black_24dp"
-            android:hint="@string/your_id"
-            android:inputType="textPersonName|number"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_perm_identity_black_24dp" />
+            android:layout_height="wrap_content"
+            android:layout_above="@id/InputName"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp">
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:ems="10"
-            android:drawableLeft="@drawable/ic_explicit_black_24dp"
-            android:hint="@string/your_full_name"
-            android:inputType="textPersonName"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:drawableStart="@drawable/ic_explicit_black_24dp" />
+            <EditText
+                android:id="@+id/id"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+                android:drawableStart="@drawable/ic_perm_identity_black_24dp"
+                android:ems="10"
+                android:hint="@string/your_id"
+                android:inputType="textPersonName|number"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/email2"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/InputName"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:ems="10"
-            android:drawableLeft="@drawable/ic_email_black_24dp"
-            android:hint="@string/your_e_mail"
-            android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            android:drawableStart="@drawable/ic_email_black_24dp" />
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/InputEmail"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-        <EditText
-            android:id="@+id/phoneNumber"
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:drawableLeft="@drawable/ic_explicit_black_24dp"
+                android:drawableStart="@drawable/ic_explicit_black_24dp"
+                android:ems="10"
+                android:hint="@string/your_full_name"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/InputEmail"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:ems="10"
-            android:hint="@string/your_phone"
-            android:inputType="phone"
-            android:drawableLeft="@drawable/ic_phone_black_24dp"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:drawableStart="@drawable/ic_phone_black_24dp" />
+            android:layout_height="wrap_content"
+            android:layout_above="@id/InputPhone"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/email2"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawableStart="@drawable/ic_email_black_24dp"
+                android:ems="10"
+                android:hint="@string/your_e_mail"
+                android:inputType="textEmailAddress"
+                android:selectAllOnFocus="true"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/InputPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/place_autocomplete_fragment1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:drawableLeft="@drawable/ic_phone_black_24dp"
+                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:ems="10"
+                android:hint="@string/your_phone"
+                android:inputType="phone"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </android.support.design.widget.TextInputLayout>
 
         <fragment
             android:id="@+id/place_autocomplete_fragment1"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +132,7 @@
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/place_autocomplete_fragment1" />
