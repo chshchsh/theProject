@@ -107,13 +107,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.sample_anim);
             addRideButton.startAnimation(animation);//this do animation on the button when you click on him
             confirmInput(v);
-            //after he send the details all fields again empty
-            name.setText("");
-            Email.setText("");
-            phoneNumber.setText("");
-            id.setText("");
-            placeAutocompleteFragment1.setText("");
-            placeAutocompleteFragment2.setText("");
         }
     }
     private void addRide() {
@@ -178,7 +171,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             Email.requestFocus();
             Toast.makeText(this,getString(R.string.fill_email),Toast.LENGTH_LONG).show();
             return false;
-        }else if (Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
             InputEmail.setErrorEnabled(true);
             InputEmail.setError(getString(R.string.contains));
             Email.requestFocus();
@@ -237,7 +230,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             InputPhone.setErrorEnabled(true);
             Toast.makeText(this,getString(R.string.fill_phone),Toast.LENGTH_LONG).show();
             return false;
-        }else if(Patterns.PHONE.matcher(phoneInput).matches()){
+        }else if(!Patterns.PHONE.matcher(phoneInput).matches()){
             InputPhone.setError(getString(R.string.length_phone));
             phoneNumber.requestFocus();
             InputPhone.setErrorEnabled(true);
@@ -252,7 +245,15 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     public void confirmInput(View v) {
         if (!validateFullName()|| !validateId() || !validatePhone() || !validateEmail())
         return;
-        else
-         addRide();
+        else {
+            addRide();
+            //after he send the details all fields again empty
+            name.setText("");
+            Email.setText("");
+            phoneNumber.setText("");
+            id.setText("");
+            placeAutocompleteFragment1.setText("");
+            placeAutocompleteFragment2.setText("");
+        }
     }
 }
