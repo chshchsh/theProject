@@ -22,4 +22,13 @@
     <string name="email">המייל חייב להכיל @</string>
     <string name="phone">האורך של המספר לא מתאים</string>
     <string name="id">לא קיים תז כזה</string>
+    <string name="location_find">נמצא המיקום</string>
+    <string name="fill_email">בבקשה מלא את השדא אימייל</string>
+    <string name="contains">האיממיל אינו קיים</string>
+    <string name="fill_id">בבקשה מלא את השדה של התז</string>
+    <string name="Extract_id">התז הזה אינו קיים</string>
+    <string name="length_id">האורך של התז לא הגיוני</string>
+    <string name="fill_name">בבקשה מלא את שדה השם</string>
+    <string name="fill_phone">בבקשה מלא את השדה טלפון</string>
+    <string name="length_phone">המספר טלפון לא קיים</string>
 </resources>
