@@ -21,7 +21,7 @@
             android:value="AIzaSyBQIvMNsccUpeeKuBUeHjQzAeNVzftk77Y"/>
         <activity
             android:screenOrientation="portrait"
-            android:name=".controller.MainActivity">
+            android:name=".controller.OpenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".controller.HomeActivity"></activity>
+            android:name=".controller.MainActivity"></activity>
     </application>
 
 </manifest>

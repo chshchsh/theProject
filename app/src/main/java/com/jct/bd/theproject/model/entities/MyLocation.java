@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import static com.jct.bd.theproject.controller.HomeActivity.placeAutocompleteFragment1;
+import static com.jct.bd.theproject.controller.MainActivity.placeAutocompleteFragment1;
 
 public class MyLocation {
     public Context context;
